@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Percentage to Hex</title>
+  <style>
+    body {
+      padding: 2rem;
+      background: #f1ffea;
+    }
+    .title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    .row, .input {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .input {
+      width: 10rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="title">透明度 (%) → 16 進制</div>
+  <div class="row">
+    <span>透明度 (%) : </span>
+    <input id="percent" class="input" type="number" min="0" max="100"> %
+  </div>
+  <div class="row">
+    <span>16 進制 : </span>
+    <span id="hex"></span>
+  </div>
+</body>
+
+<script type="text/javascript">
+  const elemPercent = document.getElementById('percent');
+  const elemHex = document.getElementById('hex');
+
+  elemPercent.addEventListener('change', (event) => {
+    const percent = parseInt(event.target.value, 10)
+    const dec = Math.round((255 * (percent / 100)));
+    const hex = ('00' + dec.toString(16).toUpperCase()).slice(-2);
+    elemHex.innerText = hex;
+  });
+</script>
+</html>
